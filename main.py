@@ -21,6 +21,6 @@ while(s is not 'y'):
 #    print("  shifter operand : " + ls[3])
 #    print("      status flag : " + flag)
 #    print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
-    if ls[0] in R:
+    if ls[0].upper() in R:
        R_Type.formatter(ls)
     s = input("Want to quit?(y/n)")
