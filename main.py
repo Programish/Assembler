@@ -8,8 +8,6 @@ B = ['BEQ', 'BNE', 'BLT', 'BGE', 'BLTU', 'BGEU']
 U = ['LUI', 'AUIPC']
 J = ['JAL']
 
-REG = ['ZERO', 'SP', 'GP', 'TP', 'T0', 'T1', 'T2', 'FP', 'S1', 'A0', 'A1', 'A2', 'A3', 'A4', 'A5',  
-       'A6', 'A7', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8', 'S9', 'S10', 'S11', 'T3', 'T4', 'T5', 'T6']          
 s = ''
 while(s is not 'y'):
     s = input()
@@ -23,4 +21,9 @@ while(s is not 'y'):
 #    print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
     if ls[0].upper() in R:
        R_Type.formatter(ls)
+    elif ls[0].upper() in J:
+       R_Type.formatter(ls)
+    elif ls[0].upper() in U:
+       R_Type.formatter(ls)
+
     s = input("Want to quit?(y/n)")
