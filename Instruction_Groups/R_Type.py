@@ -55,8 +55,8 @@ def formatter(ins_lst):
     
     bin_res += funct3[ins_lst[0]]
     
-    if ins_lst[2].upper() in REG:
-        bin_res += '0'*(7-len(bin(REG.index(ins_lst[1])))) + bin(REG.index(ins_lst[2]))[2:]
+    if ins_lst[1].upper() in REG:
+        bin_res += '0'*(7-len(bin(REG.index(ins_lst[1])))) + bin(REG.index(ins_lst[1]))[2:]
     else:
         raise ValueError("Destination Register is unknown!!!!\n")
         return
