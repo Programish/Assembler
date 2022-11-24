@@ -47,7 +47,9 @@ def formatter(ins_lst):
         else:
             bin_no = bin(int(ins_lst[3][1:]))[2:]
             fin_bin_no = '0' * (12-len(bin_no)) + bin_no
+            #Flipping the bits of original number
             flipped_bits = ''.join(['1' if i == '0' else '0' for i in fin_bin_no])
+            #Adding 1 to flipped bits, to get 2's complement of the negative immediate passed
             bin_neg_no = bin(int(flipped_bits, 2) + int('1', 2))
             bin_res += bin_neg_no[2:]
 
@@ -56,7 +58,7 @@ def formatter(ins_lst):
         return
 
     if ins_lst[1].upper() in REG:
-        bin_res += '0'*(7-len(bin(REG.index(ins_lst[1])))) + bin(REG.index(ins_lst[1]))[2:]
+        bin_res += '0'*(7-len(bin(REG.index(ins_lst[2])))) + bin(REG.index(ins_lst[2]))[2:]
     else:
         raise ValueError("1st Source Register is unknown!!!!\n")
         return
