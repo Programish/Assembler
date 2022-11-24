@@ -22,24 +22,30 @@ def formatter(ins_lst):
     if ins_lst[0][0].upper() is 'S':                        # Shift operations
         if ins_lst[3].__contains__('x'):                    # Hex immediates
             if len(bin(int(ins_lst[3], 16))[2:]) > 5:
-                raise ValueError("Immediate passed is out of range!!!! \n Enter value <= 0x19 \n")
+                raise ValueError("Shift amount passed is out of range!!!! \n Enter value <= 0x19 \n")
                 return
             else:
-                bin_res += bin(int(ins_lst[3], 16))[2:]
+                bin_no = bin(int(ins_lst[3], 16))[2:]
+                fin_bin_no = '0' * (5-len(bin_no)) + bin_no
+                bin_res += fin_bin_no
         elif ins_lst[3].__contains__('b'):                  # Bin immediates
             if len(ins_lst[3][2:]) > 5:
-                raise ValueError("Immediate passed is out of range!!!! \n Enter value <= 0b11111 \n")
+                raise ValueError("Shift amount passed is out of range!!!! \n Enter value <= 0b11111 \n")
                 return
             else:
-                bin_res += ins_lst[3][2:]
+                bin_no = ins_lst[3][2:]
+                fin_bin_no = '0' * (5-len(bin_no)) + bin_no
+                bin_res += fin_bin_no 
         elif type(ins_lst[3]) is int:                       # Int immediates
             if ins_lst[3] > 31:
-                raise ValueError("Immediate passed is out of range!!!! \n Enter value <= 31 \n")
+                raise ValueError("Shift amount passed is out of range!!!! \n Enter value <= 31 \n")
                 return
             else:
-                bin_res += bin(ins_lst[3])[2:]
+                bin_no = bin(int(ins_lst[3]))[2:]
+                fin_bin_no = '0' * (12-len(bin_no)) + bin_no
+                bin_res += fin_bin_no 
         else:
-            raise ValueError("Passed Immediate not allowed!!!! \n Only hex/bin/int values are allowed \n")
+            raise ValueError("Passed Shift amount not allowed!!!! \n Only hex/bin/int values are allowed \n")
             return
     elif ins_lst[3].upper() in REG:                         # Except shift operations
         bin_res += '0'*(7-len(bin(REG.index(ins_lst[3])))) + bin(REG.index(ins_lst[3]))[2:]

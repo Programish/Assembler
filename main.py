@@ -13,13 +13,13 @@ while(s is not 'y'):
     s = input()
     s = s.upper()
     ls = s.replace(",", "").split()
-#    flag = "1" if (ls[0][-1] in ("S", "s")) else "0"
-#    print("           OpCode : " + ls[0] + "    " + opcode[ls[0]])
-#    print("               Rd : " + ls[1])
-#    print("               Rn : " + ls[2])
-#    print("  shifter operand : " + ls[3])
-#    print("      status flag : " + flag)
-#    print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+    flag = "1" if (ls[0][-1] in ("S", "s")) else "0"
+    print("           OpCode : " + ls[0])
+    print("               Rd : " + ls[1])
+    print("               Rn : " + ls[2])
+    print("  shifter operand : " + ls[3])
+    print("      status flag : " + flag)
+    print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
     try:
         if ls[0].upper() in R:
             R_Type.formatter(ls)
