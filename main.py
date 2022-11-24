@@ -1,5 +1,5 @@
 import Instruction_Groups
-from Instruction_Groups import R_Type
+from Instruction_Groups import I_Type
 
 R = ['SLLI', 'SRLI', 'SRAI', 'ADD', 'SUB', 'SLL', 'SLT', 'SLTU', 'XOR', 'SRL', 'SRA', 'OR', 'AND']
 I = ['JALR', 'LB', 'LH', 'LW', 'LBU', 'LHU', 'ADDI', 'SLTI', 'SLTIU', 'XORI', 'ORI', 'ANDI']
@@ -11,6 +11,7 @@ J = ['JAL']
 s = ''
 while(s is not 'y'):
     s = input()
+    s = s.upper()
     ls = s.replace(",", "").split()
 #    flag = "1" if (ls[0][-1] in ("S", "s")) else "0"
 #    print("           OpCode : " + ls[0] + "    " + opcode[ls[0]])
@@ -19,11 +20,20 @@ while(s is not 'y'):
 #    print("  shifter operand : " + ls[3])
 #    print("      status flag : " + flag)
 #    print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
-    if ls[0].upper() in R:
-       R_Type.formatter(ls)
-    elif ls[0].upper() in J:
-       R_Type.formatter(ls)
-    elif ls[0].upper() in U:
-       R_Type.formatter(ls)
-
+    try:
+        if ls[0].upper() in R:
+            R_Type.formatter(ls)
+        elif ls[0].upper() in J:
+            J_Type.formatter(ls)
+        elif ls[0].upper() in U:
+            U_Type.formatter(ls)
+        elif ls[0].upper() in B:
+            B_Type.formatter(ls)
+        elif ls[0].upper() in I:
+            I_Type.formatter(ls)
+        elif ls[0].upper() in S:
+            S_Type.formatter(ls)
+    except ValueError as err:
+        print(str(err))
+    
     s = input("Want to quit?(y/n)")
