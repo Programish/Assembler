@@ -16,37 +16,37 @@ def formatter(ins_lst):
     bin_res = '0b'
     print() 
     
-    if ins_lst[3].__contains__('X'):                                # Hex immediates
-        if len(bin(int(ins_lst[3], 16))[2:]) > 12:
+    if ins_lst[-1].__contains__('X'):                                # Hex immediates
+        if len(bin(int(ins_lst[-1], 16))[2:]) > 12:
             raise ValueError("Immediate passed is out of range!!!! \n Enter value <= 0xfff \n")
             return
         else:
-            bin_no = bin(int(ins_lst[3], 16))[2:]
+            bin_no = bin(int(ins_lst[-1], 16))[2:]
             fin_bin_no = '0' * (12-len(bin_no)) + bin_no
             bin_res += fin_bin_no
-    elif ins_lst[3].__contains__('B'):                              # Bin immediates
-        if len(ins_lst[3][2:]) > 12:
+    elif ins_lst[-1].__contains__('B'):                              # Bin immediates
+        if len(ins_lst[-1][2:]) > 12:
             raise ValueError("Immediate passed is out of range!!!! \n Enter value <= 0b111111111111 \n")
             return
         else:
-            bin_no = ins_lst[3][2:]
+            bin_no = ins_lst[-1][2:]
             fin_bin_no = '0' * (12-len(bin_no)) + bin_no
             bin_res += fin_bin_no
-    elif ins_lst[3].isnumeric():                                    # Positive Int immediates
-        if int(ins_lst[3]) > 4095:
+    elif ins_lst[-1].isnumeric():                                    # Positive Int immediates
+        if int(ins_lst[-1]) > 4095:
             raise ValueError("Immediate passed is out of range!!!! \n Enter value <= 4095 \n")
             return
         else:
-            bin_no = bin(int(ins_lst[3]))[2:]
+            bin_no = bin(int(ins_lst[-1]))[2:]
             fin_bin_no = '0' * (12-len(bin_no)) + bin_no
             bin_res += fin_bin_no
 
-    elif ins_lst[3][1:].isnumeric() and ins_lst[3][0] is '-':       # Negative Int immediates
-        if int(ins_lst[3][1:]) > 4094:
+    elif ins_lst[-1][1:].isnumeric() and ins_lst[-1][0] is '-':      # Negative Int immediates
+        if int(ins_lst[-1][1:]) > 4094:
             raise ValueError("Immediate passed is out of range!!!! \n Enter value >= -4094 \n")
             return
         else:
-            bin_no = bin(int(ins_lst[3][1:]))[2:]
+            bin_no = bin(int(ins_lst[-1][1:]))[2:]
             fin_bin_no = '0' * (12-len(bin_no)) + bin_no
             #Flipping the bits of original number
             flipped_bits = ''.join(['1' if i == '0' else '0' for i in fin_bin_no])
@@ -55,7 +55,7 @@ def formatter(ins_lst):
             bin_res += bin_neg_no[2:]
 
     elif ins_lst[-1].__contains__('('):                             # For Offsets
-        imm = ins_lst[-1][:int(ins_lst[-1].index('('))]    
+        imm = ins_lst[-1][:ins_lst[-1].index('(')]    
         if imm.isnumeric():                                         # Positive Int Offset
             if int(imm) > 4095:
                 raise ValueError("Immediate passed is out of range!!!! \n Enter value <= 4095 \n")
@@ -83,7 +83,7 @@ def formatter(ins_lst):
 
     
     if ins_lst[-1].__contains__('('):
-        sr = [int(ins_lst[-1].index('('))+1:int(ins_lst[-1].index(')'))]
+        sr = ins_lst[-1][ins_lst[-1].index('(')+1:ins_lst[-1].index(')')]
         bin_res += '0'*(7-len(bin(REG.index(sr)))) + bin(REG.index(sr))[2:]
 
     elif ins_lst[1].upper() in REG:

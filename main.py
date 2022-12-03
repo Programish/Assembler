@@ -17,10 +17,14 @@ while(s is not 'y'):
     
     print("           OpCode : " + ls[0])
     print("               Rd : " + ls[1])
-    print("               Rn : " + ls[2])
+
+    if ls[-1].__contains__('('):
+        print("               Rn : " + ls[-1][ls[-1].index('(')+1:ls[-1].index(')')])
+    else:
+        print("               Rn : " + ls[2])
     
     if ls[-1].__contains__('('): 
-        print("  shifter operand : " + ls[-1][:int(ls[-1].index('('))])
+        print("  shifter operand : " + ls[-1][:ls[-1].index('(')])
     else:
         print("  shifter operand : " + ls[-1])
     
