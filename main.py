@@ -14,10 +14,16 @@ while(s is not 'y'):
     s = s.upper()
     ls = s.replace(",", "").split()
     flag = "1" if (ls[0][-1] in ("S", "s")) else "0"
+    
     print("           OpCode : " + ls[0])
     print("               Rd : " + ls[1])
     print("               Rn : " + ls[2])
-    print("  shifter operand : " + ls[3])
+    
+    if ls[-1].__contains__('('): 
+        print("  shifter operand : " + ls[-1][:int(ls[-1].index('('))])
+    else:
+        print("  shifter operand : " + ls[-1])
+    
     print("      status flag : " + flag)
     print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
     try:
