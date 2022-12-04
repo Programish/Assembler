@@ -1,5 +1,5 @@
 import Instruction_Groups
-from Instruction_Groups import I_Type, R_Type, B_Type, J_Type, S_Type#, U_Type
+from Instruction_Groups import I_Type, R_Type, B_Type, J_Type, S_Type, U_Type
 
 R = ['SLLI', 'SRLI', 'SRAI', 'ADD', 'SUB', 'SLL', 'SLT', 'SLTU', 'XOR', 'SRL', 'SRA', 'OR', 'AND']
 I = ['JALR', 'LB', 'LH', 'LW', 'LBU', 'LHU', 'ADDI', 'SLTI', 'SLTIU', 'XORI', 'ORI', 'ANDI']
