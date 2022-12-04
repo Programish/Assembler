@@ -3,7 +3,8 @@ from Registers import REG
 
 def formatter(ins_lst):
     bin_res = '0b'
-    
+    fin_bin_no = ''
+
     if ins_lst[2].__contains__('X'):                                    # Hex immediates
         if len(bin(int(ins_lst[2], 16))[2:]) > 20:
             raise ValueError("Immediate passed is out of range!!!! \n Enter value <= 0xfffff \n")

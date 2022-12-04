@@ -6,7 +6,7 @@ funct3 = {'BEQ':'000', 'BNE':'001', 'BLT':'100',
 
 def formatter(ins_lst):
     bin_res = '0b'
-    imm = ''
+    fin_bin_no = ''
     
     if ins_lst[-1].__contains__('X'):                                # Hex immediates
         if len(bin(int(ins_lst[-1], 16))[2:]) > 12:
