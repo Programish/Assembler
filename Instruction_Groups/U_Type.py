@@ -50,7 +50,9 @@ def formatter(ins_lst):
         return
 
     bin_res += '0010111'
-    bin_res[-6] = (ins_lst[0].upper() == 'LUI') ? 1 : 0
+    if ins_lst[0] is 'LUI':
+        bin_res[-6] = '1'
+#    bin_res[-6] = (ins_lst[0] == 'LUI') ? '1' : '0'
    
-    print('Binary : ' + bin_res)
+#    print('Binary : ' + bin_res)
     print('Hex : ' + hex(int(bin_res, 2)))

@@ -8,42 +8,52 @@ B = ['BEQ', 'BNE', 'BLT', 'BGE', 'BLTU', 'BGEU']
 U = ['LUI', 'AUIPC']
 J = ['JAL']
 
-s = ''
-while(s is not 'y'):
-    s = input()
-    s = s.upper()
-    ls = s.replace(",", "").split()
+#s = ''
+#while(s is not 'y'):
+#    s = input()
+#    ls = s.replace(",", "").split()
+addr = 124 
+file1 = open('cmd.asm', 'r')
+Lines = file1.readlines()
+for line in Lines:
+#    print(line)
+    addr += 4
+    print(hex(addr) + ' : ')                            # Starting address of a instruction is 0x80 (assumption)
+    ls = line.replace(",", "").split()
+    ls = [x.upper() for x in ls]
     flag = "1" if (ls[0][-1] in ("S", "s")) else "0"
     
-    print("           OpCode : " + ls[0])
-    print("               Rd : " + ls[1])
+#    print("           OpCode : " + ls[0])
+#    print("               Rd : " + ls[1])
 
-    if ls[-1].__contains__('('):
-        print("               Rn : " + ls[-1][ls[-1].index('(')+1:ls[-1].index(')')])
-    else:
-        print("               Rn : " + ls[2])
+#    if ls[-1].__contains__('('):
+#        print("               Rn : " + ls[-1][ls[-1].index('(')+1:ls[-1].index(')')])
+#    else:
+#        print("               Rn : " + ls[2])
     
-    if ls[-1].__contains__('('): 
-        print("  shifter operand : " + ls[-1][:ls[-1].index('(')])
-    else:
-        print("  shifter operand : " + ls[-1])
+#    if ls[-1].__contains__('('): 
+#        print("  shifter operand : " + ls[-1][:ls[-1].index('(')])
+#    else:
+#        print("  shifter operand : " + ls[-1])
     
-    print("      status flag : " + flag)
-    print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+#    print("      status flag : " + flag)
+
     try:
-        if ls[0].upper() in R:
+        if ls[0] in R:
             R_Type.formatter(ls)
-        elif ls[0].upper() in J:
+        elif ls[0] in J:
             J_Type.formatter(ls)
-        elif ls[0].upper() in U:
+        elif ls[0] in U:
             U_Type.formatter(ls)
-        elif ls[0].upper() in B:
+        elif ls[0] in B:
             B_Type.formatter(ls)
-        elif ls[0].upper() in I:
+        elif ls[0] in I:
             I_Type.formatter(ls)
-        elif ls[0].upper() in S:
+        elif ls[0] in S:
             S_Type.formatter(ls)
     except ValueError as err:
         print(str(err))
     
-    s = input("Want to quit?(y/n)")
+#    print("\nxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+#    s = input("Want to quit?(y/n)")
+file1.close()

@@ -63,5 +63,5 @@ def formatter(ins_lst):
     
     bin_res += '0100011'
     
-    print('Binary : ' + bin_res)
+#    print('Binary : ' + bin_res)
     print('Hex : ' + hex(int(bin_res, 2)))

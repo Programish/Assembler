@@ -14,7 +14,6 @@ def opcode(inst):
 
 def formatter(ins_lst):
     bin_res = '0b'
-    print() 
     
     if ins_lst[-1].__contains__('X'):                                # Hex immediates
         if len(bin(int(ins_lst[-1], 16))[2:]) > 12:
@@ -99,5 +98,5 @@ def formatter(ins_lst):
 
     bin_res += opcode(ins_lst[0])
     
-    print('Binary : ' + bin_res)
+#    print('Binary : ' + bin_res)
     print('Hex : ' + hex(int(bin_res, 2)))
