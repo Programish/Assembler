@@ -66,4 +66,16 @@ def formatter(ins_lst):
     bin_res += '1100011'
     
 #    print('Binary : ' + bin_res)
-    print('Hex : ' + hex(int(bin_res, 2)))
+#    print('Hex : ' + hex(int(bin_res, 2)))
+    hex_res = hex(int(bin_res, 2))[2:]
+    fin_hex_res = '0'*(8-len(hex_res)) + hex_res
+
+#   Big Endian Format
+    for i in range(len(fin_hex_res)):
+        print(' ' + fin_hex_res[i]) if i%2==0 else print(fin_hex_res[i], end='')
+    
+    print('\t---->\t', end='')
+
+#   Little Endian Format
+   le_fromat = fin_hex_res[::-1]
+

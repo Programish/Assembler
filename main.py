@@ -18,7 +18,7 @@ Lines = file1.readlines()
 for line in Lines:
 #    print(line)
     addr += 4
-    print(hex(addr) + ' : ')                            # Starting address of a instruction is 0x80 (assumption)
+    print(hex(addr) + ' :', end='')                                     # Starting address of a instruction is 0x80 (assumption)
     ls = line.replace(",", "").split()
     ls = [x.upper() for x in ls]
     flag = "1" if (ls[0][-1] in ("S", "s")) else "0"
