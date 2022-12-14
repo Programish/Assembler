@@ -13,6 +13,7 @@ J = ['JAL']
 #    s = input()
 #    ls = s.replace(",", "").split()
 addr = 124 
+#file1 = open('cmd.asm', 'r')
 file1 = open('cmd.asm', 'r')
 Lines = file1.readlines()
 for line in Lines:

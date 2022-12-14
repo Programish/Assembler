@@ -52,4 +52,20 @@ def formatter(ins_lst):
     bin_res += '1101111'
    
 #    print('Binary : ' + bin_res)
-    print('Hex : ' + hex(int(bin_res, 2)))
+#    print('Hex : ' + hex(int(bin_res, 2)))
+    hex_res = hex(int(bin_res, 2))[2:]
+    fin_hex_res = '0'*(8-len(hex_res)) + hex_res
+
+#   Big Endian Format
+    for i in range(len(fin_hex_res)):
+        print(' ' + fin_hex_res[i]) if i%2==0 else print(fin_hex_res[i], end='')
+
+    print('\t---->\t', end='')
+
+#   Little Endian Format
+    le_format = fin_hex_res[::-1]
+    ls = [x for x in le_format]
+    for i in range(0, len(ls)-1, 2):
+        ls[i], ls[i+1] = ls[i+1], ls[i]
+    le_format = "".join([str(i) for i in ls])
+    print(le_format)
