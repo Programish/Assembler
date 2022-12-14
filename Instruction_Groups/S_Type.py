@@ -70,7 +70,7 @@ def formatter(ins_lst):
 
 #   Big Endian Format
     for i in range(len(fin_hex_res)):
-        print(' ' + fin_hex_res[i]) if i%2==0 else print(fin_hex_res[i], end='')
+        print(' ' + fin_hex_res[i], end='') if i%2==0 else print(fin_hex_res[i], end='')
 
     print('\t---->\t', end='')
 
@@ -80,4 +80,5 @@ def formatter(ins_lst):
     for i in range(0, len(ls)-1, 2):
         ls[i], ls[i+1] = ls[i+1], ls[i]
     le_format = "".join([str(i) for i in ls])
+    le_format = '0x' + le_format
     print(le_format)
