@@ -4,10 +4,10 @@ from Registers import REG
 def formatter(ins_lst):
     bin_res = '0b'
     fin_bin_no = ''
-
+    
     if len(ins_lst) == 2 and ins_lst[0] == 'J':                          # Pseudoinstrunctions
         ins_lst.insert(1, 'A0')
-        ins_lst[0] == 'JAL'
+        ins_lst[0] = 'JAL'
     elif len(ins_lst) == 2 and ins_lst[0] == 'JAL':
         ins_lst.insert(1, 'A1')
 
@@ -26,7 +26,7 @@ def formatter(ins_lst):
             bin_no = ins_lst[-1][2:]
             fin_bin_no = '0'*(20-len(bin_no)) + bin_no
     elif ins_lst[-1].isnumeric():                                        # Positive Int immediates
-        if ins_lst[-1] > 1048575:
+        if int(ins_lst[-1]) > 1048575:
             raise ValueError("Immediate passed is out of range!!!! \n Enter value <= 1048575 \n")
             return
         else:
