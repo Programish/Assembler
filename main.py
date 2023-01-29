@@ -46,7 +46,7 @@ for line in Lines:
             J_Type.formatter(ls)
         elif ls[0] in U:
             U_Type.formatter(ls)
-        elif ls[0] in B:
+        elif ls[0][0] == 'B':
             B_Type.formatter(ls)
         elif ls[0] in I:
             I_Type.formatter(ls)

@@ -5,28 +5,34 @@ def formatter(ins_lst):
     bin_res = '0b'
     fin_bin_no = ''
 
-    if ins_lst[2].__contains__('X'):                                    # Hex immediates
-        if len(bin(int(ins_lst[2], 16))[2:]) > 20:
+    if len(ins_lst) == 2 and ins_lst[0] == 'J':                          # Pseudoinstrunctions
+        ins_lst.insert(1, 'A0')
+        ins_lst[0] == 'JAL'
+    elif len(ins_lst) == 2 and ins_lst[0] == 'JAL':
+        ins_lst.insert(1, 'A1')
+
+    if ins_lst[-1].__contains__('X'):                                    # Hex immediates
+        if len(bin(int(ins_lst[-1], 16))[2:]) > 20:
             raise ValueError("Immediate passed is out of range!!!! \n Enter value <= 0xfffff \n")
             return
         else:
             bin_no = bin(int(ins_lst[-1], 16))[2:]
             fin_bin_no = '0'*(20-len(bin_no)) + bin_no
-    elif ins_lst[2].__contains__('B'):                                  # Bin immediates
-        if len(ins_lst[2][2:]) > 20:
+    elif ins_lst[-1].__contains__('B'):                                  # Bin immediates
+        if len(ins_lst[-1][2:]) > 20:
             raise ValueError("Immediate passed is out of range!!!! \n Enter value <= 0b11111111111111111111 \n")
             return
         else:
             bin_no = ins_lst[-1][2:]
             fin_bin_no = '0'*(20-len(bin_no)) + bin_no
-    elif ins_lst[-1].isnumeric():                                       # Positive Int immediates
-        if ins_lst[2] > 1048575:
+    elif ins_lst[-1].isnumeric():                                        # Positive Int immediates
+        if ins_lst[-1] > 1048575:
             raise ValueError("Immediate passed is out of range!!!! \n Enter value <= 1048575 \n")
             return
         else:
             bin_no = bin(int(ins_lst[-1]))[2:]
             fin_bin_no = '0'*(20-len(bin_no)) + bin_no
-    elif ins_lst[-1][1:].isnumeric() and ins_lst[-1][0] is '-':         # Negative Int immediates
+    elif ins_lst[-1][1:].isnumeric() and ins_lst[-1][0] is '-':          # Negative Int immediates
         if int(ins_lst[-1][1:]) > 1048574:
             raise ValueError("Immediate passed is out of range!!!! \n Enter value >= -1048574 \n")
             return
