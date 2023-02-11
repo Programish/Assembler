@@ -5,3 +5,8 @@ lw t2, -6(s3)
 addi sp, sp, -16
 j 45898
 jal 45696
+jr s4
+jalr s4
+ret
+call 0x67
+tail 0x67

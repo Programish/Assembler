@@ -7,7 +7,19 @@ funct3 = {'BEQ':'000', 'BNE':'001', 'BLT':'100',
 def formatter(ins_lst):
     bin_res = '0b'
     fin_bin_no = ''
-    print('start b')
+
+    if ins_lst[0][-1] == 'Z' and len(ins_lst) == 3:                  # Pseudiinstructions
+        ins_lst[0] = ins_lst[0][:-1]
+        if ins_lst[0] == 'BLE':
+            ins_lst[0] = 'BGE'
+            ins_lst.insert(1, 'A0')
+        elif ins_lst[0] == 'BGT':
+            ins_lst[0] = 'BLT'
+            ins_lst.insert(1, 'A0')
+        else:
+            ins_lst.insert(2, 'A0')
+
+#   print('start b')
     if ins_lst[-1].__contains__('X'):                                # Hex immediates
         if len(bin(int(ins_lst[-1], 16))[2:]) > 12:
             raise ValueError("Immediate passed is out of range!!!! \n Enter value <= 0xfff \n")
