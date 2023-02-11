@@ -5,7 +5,7 @@ funct3 = {'JALR':'000', 'LB':'000', 'LH':'001', 'LW':'010', 'LBU':'100', 'LHU':'
           'ADDI':'000', 'SLTI':'010', 'SLTIU':'011', 'XORI':'100', 'ORI':'110', 'ANDI':'111'}
 
 def opcode(inst):
-    if inst is 'JALR':
+    if inst == 'JALR':
         return '1100111'
     elif inst in ('LB', 'LH', 'LW', 'LBU', 'LHU'):
         return '0000011'
@@ -15,6 +15,24 @@ def opcode(inst):
 def formatter(ins_lst):
     bin_res = '0b'
     
+    if ins_lst[0] == 'JR':                                           # Pseudoinstructions
+        ins_lst.insert(1, 'A0')
+        ins_lst[0] = 'JALR'
+        ins_lst.insert(3, '0')
+    elif ins_lst[0] == 'JALR' and len(ins_lst) == 2:
+        ins_lst.insert(1, 'A1')
+        ins_lst.insert(3, '0')
+    elif ins_lst[0] == 'RET':
+        ins_lst = ['JALR', 'A0', 'A1', '0']
+    elif ins_lst[0] == 'CALL':
+        ins_lst.insert(1, 'A1')
+        ins_lst.insert(2, 'A6')
+        ins_lst[0] = 'JALR'
+    elif ins_lst[0] == 'TAIL':
+        ins_lst.insert(1, 'A0')
+        ins_lst.insert(2, 'A6')
+        ins_lst[0] = 'JALR'
+
     if ins_lst[-1].__contains__('X'):                                # Hex immediates
         if len(bin(int(ins_lst[-1], 16))[2:]) > 12:
             raise ValueError("Immediate passed is out of range!!!! \n Enter value <= 0xfff \n")
