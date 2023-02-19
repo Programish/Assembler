@@ -32,6 +32,17 @@ def formatter(ins_lst):
         ins_lst.insert(1, 'A0')
         ins_lst.insert(2, 'A6')
         ins_lst[0] = 'JALR'
+    elif ins_lst[0] == 'NOP':
+        ins_lst = ['ADDI', 'A0', 'A0', '0']
+    elif ins_lst[0] == 'MV':
+        ins_lst.insert(3, '0')
+        ins_lst[0] = 'ADDI'
+    elif ins_lst[0] == 'NOT':
+        ins_lst.insert(3, '-1')
+        ins_lst[0] = 'XORI'
+    elif ins_lst[0] == 'SEQZ':
+        ins_lst.insert(3, '1')
+        ins_lst[0] = 'SLTIU'
 
     if ins_lst[-1].__contains__('X'):                                # Hex immediates
         if len(bin(int(ins_lst[-1], 16))[2:]) > 12:

@@ -39,7 +39,7 @@ for line in Lines:
 #    print("      status flag : " + flag)
 
     try:
-        if ls[0] in R:
+        if ls[0] in R or ls[0] in ('NEG', 'SNEZ', 'SLTZ', 'SGTZ'):
             R_Type.formatter(ls)
         elif ls[0] in J or ls[0] == 'J':
             J_Type.formatter(ls)
@@ -47,7 +47,7 @@ for line in Lines:
             U_Type.formatter(ls)
         elif ls[0][0] == 'B':
             B_Type.formatter(ls)
-        elif ls[0] in I or ls[0] in ('JR', 'RET', 'CALL', 'TAIL'):
+        elif ls[0] in I or ls[0] in ('NOP', 'MV', 'NOT', 'SEQZ', 'JR', 'RET', 'CALL', 'TAIL'):
             I_Type.formatter(ls)
         elif ls[0] in S:
             S_Type.formatter(ls)

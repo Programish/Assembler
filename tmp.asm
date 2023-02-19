@@ -1,6 +1,8 @@
-beqz s4, 1000
-bnez s4, 1000
-blez s4, 1000
-bgez s4, 1000
-bltz s4, 1000
-bgtz s4, 1000
+nop
+mv s2, s4
+not s2, s4
+seqz s2, s4
+neg s2, s4
+snez s2, s4
+sltz s2, s4
+sgtz s2, s4

@@ -19,6 +19,19 @@ def opcode(inst):
 def formatter(ins_lst):
     bin_res = '0b' + funct7(ins_lst[0])
     
+    if ins_lst[0] == 'NEG':                                 # Pseudoinstructions
+        ins_lst.insert(2, 'A0')
+        ins_lst[0] = 'SUB'
+    elif ins_lst[0] == 'SNEZ':
+        ins_lst.insert(2, 'A0')
+        ins_lst[0] = 'SLTU'
+    elif ins_lst[0] == 'SLTZ':
+        ins_lst.insert(3, 'A0')
+        ins_lst[0] = 'SLT'
+    elif ins_lst[0] == 'SGTZ':
+        ins_lst.insert(2, 'A0')
+        ins_lst[0] = 'SLT'
+
     if ins_lst[0][0].upper() is 'S':                        # Shift operations
         if ins_lst[3].__contains__('x'):                    # Hex immediates
             if len(bin(int(ins_lst[3], 16))[2:]) > 5:
